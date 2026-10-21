@@ -1,4 +1,4 @@
-# pythonr sistems projetcs
+# Python Systems Projects
 
 This repository contains my first Python projects focused on Systems Engineering.
 
