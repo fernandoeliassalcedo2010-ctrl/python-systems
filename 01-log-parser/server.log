@@ -1,0 +1,5 @@
+2026-10-05 10:00 INFO Servidor iniciado
+2026-10-05 10:01 ERROR Fallo de conexion en BD
+2026-10-05 10:02 WARNING Uso de CPU alto
+2026-10-05 10:03 ERROR Timeout en API
+2026-10-05 10:04 INFO Reintento exitoso
