@@ -57,7 +57,32 @@ mi_personaje.subir_nivel(1, 4, 1)
 #print(mi_personaje.daño(mi_enemigo)) #muesrea el daño 10
 #mi_personaje.atacar(mi_enemigo)#lupe ha realizado 10 puntos de daño a doña Vida de doña es 90
 
+class guerrero(Personaje):
+    def __init__(self, nombre, fuerza, inteligencia, defensa, vida, espada):
+        
+        super().__init__(nombre, fuerza, inteligencia, defensa, vida)
+        self.espada = espada
+    def cambiar_arma(self):
+        opciones = int(input("Elige tuarma con estos numeros disponibles : (1) Espada oxidada, (2) Espada de cobre , (3) katana : "))
+        if opciones == 1:
+            self.espada = 6
+        elif opciones == 2:
+            self.espada = 5
+        elif opciones == 3:
+            self.espada = 7
+        else:
+            print("El numero no esta en las opciones , intentelo de nuevo con 1 , 2 o 3")
+            int(input("(1) Espada oxidada, (2) Espada de cobre , (3) katana"))
 
+    
+    def atributos(self):
+        super().atributos()
+        print(".Espada:", self.espada)
+        
+guts = guerrero("guts", 10, 23, 12, 100, 5)
+guts.cambiar_arma() #donde pusimos mas cosas en la espada para eleigir y ponerlos
+guts.atributos()
+print(guts.espada) # nos muestra el valor de fuerza de la espada
 
 
     
