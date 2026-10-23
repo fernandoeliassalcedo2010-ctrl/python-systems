@@ -78,11 +78,30 @@ class guerrero(Personaje):
     def atributos(self):
         super().atributos()
         print(".Espada:", self.espada)
-        
-guts = guerrero("guts", 10, 23, 12, 100, 5)
-guts.cambiar_arma() #donde pusimos mas cosas en la espada para eleigir y ponerlos
+    def daño(self, enemigo):
+        return self.fuerza*self.espada - enemigo.defensa
+dante = ("Dante", 10, 12, 23, 100, )
+guts = ("guts", 10, 12, 23, 100, 9)
+dote = ("dote", 10, 12, 23, 100, 9)
+dante.atacar(guts)
 guts.atributos()
-print(guts.espada) # nos muestra el valor de fuerza de la espada
+#guts = guerrero("guts", 10, 23, 12, 100, 5)
+#guts.cambiar_arma() #donde pusimos mas cosas en la espada para eleigir y ponerlos
+#guts.atributos()
+#print(guts.espada) # nos muestra el valor de fuerza de la espada
+class mago(Personaje):
+    def __init__(self, nombre,fuerza,  inteligencia, defensa , vida, libro):
+        super().__init__(nombre, fuerza, inteligencia, defensa, vida)
+        self.libro = libro
+    def atributos(self):
+        super().atributos()
+        print(".Libro:", self.libro)
+    def daño(self, enemigo):
+        return self.inteligencia* self.libro - enemigo.defensa
 
+#dote = mago("dote", 20, 15, 10, 100, 5)
+#dote.atributos()
+#dote.atacar(mi_enemigo)
+    
 
     
