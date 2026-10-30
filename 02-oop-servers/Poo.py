@@ -80,11 +80,7 @@ class guerrero(Personaje):
         print(".Espada:", self.espada)
     def daño(self, enemigo):
         return self.fuerza*self.espada - enemigo.defensa
-dante = ("Dante", 10, 12, 23, 100, )
-guts = ("guts", 10, 12, 23, 100, 9)
-dote = ("dote", 10, 12, 23, 100, 9)
-dante.atacar(guts)
-guts.atributos()
+
 #guts = guerrero("guts", 10, 23, 12, 100, 5)
 #guts.cambiar_arma() #donde pusimos mas cosas en la espada para eleigir y ponerlos
 #guts.atributos()
@@ -102,6 +98,44 @@ class mago(Personaje):
 #dote = mago("dote", 20, 15, 10, 100, 5)
 #dote.atributos()
 #dote.atacar(mi_enemigo)
-    
 
-    
+#guts = guerrero("guts", 20, 15, 10, 100, 5)
+#dote = mago("dote", 20, 15, 10, 100, 5)
+#mi_personaje = Personaje("lupe", 20, 15, 10, 100)    
+
+#mi_personaje.atacar(guts)
+#guts.atacar(dote)
+#dote.atacar(mi_personaje)
+#mi_personaje.atributos()
+#guts.atributos()
+#dote.atributos()
+"""
+class fuerza_electrica():
+    def de_que_trata(self):
+        print("El tema de fuerza electrica que se refiere el valor de fuerza que llevan los objetos magtenicos dependiendo de la variable de la distancia")
+class campo_electrico():
+    def de_que_trata(self):
+        print("el tema de campo electrico , es calcular la fuerza magnetica que se presenta en un campo por un objeto magnetico afectandoa a otros")
+
+def definicion_tema(tema):
+    tema.de_que_trata()
+
+definicion_tema(campo_electrico())
+"""
+
+personaje_1 = guerrero("guts", 20 , 10 , 4 , 100 , 4)
+personaje_2 = mago("dote", 5, 15, 4, 100, 3)
+
+def combate (jugador_1, jugador_2):
+
+    while jugador_1.esta_vivo() and jugador_2.esta_vivo():
+        print("\nturno",turno)
+        print(">>> Accion de", jugador_1.nombre, ":", sep="")
+        jugador_1.atacar(jugador_2)
+        print("\nturno",turno)
+        print(">>> Accion de", jugador_2.nombre, ":", sep="")
+        jugador_2.atacar(jugador_1)
+        turno = turno + 1 
+
+combate(personaje_1, personaje_2)
+                         

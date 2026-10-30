@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI # abrir la caja de herramientas y de ello tarer al APIs
 import psutil
 
 # Creamos la aplicación (el mesero)
@@ -23,3 +23,32 @@ def obtener_estado():
         "ram": uso_ram,
         "disco": uso_disco
     }
+
+
+
+@app.get("/disco")
+def estado_disco():
+    uso_disco = psutil.disk_usage('/').percent
+
+    return {
+        "disco_porcentaje" :uso_disco
+    }
+
+@app.get("/suma/{a}/{b}/{mensaje}")
+def suma_de_valores(a : int, b : int, mensaje : str):
+    resultado = a + b
+    return {"resultado matematico " : resultado,
+            "mensaje personalizado" : mensaje}
+
+@app.get("/alerta/{uso_de_cpu}/{mensaje}")
+def estado_del_cpu(uso_de_cpu : int, mensaje : str):
+    if uso_de_cpu > 80:
+        return {"estado": "CRITICAL", mensaje: "¡Cuidado, CPU al límite!"}
+    elif uso_de_cpu <80:
+        return {"estado": "OK", mensaje: "Todo normal"}
+    else:
+        return {"estado" : "DEBUG" , mensaje : "no definido"}
+    
+    
+
+
