@@ -49,6 +49,19 @@ def estado_del_cpu(uso_de_cpu : int, mensaje : str):
     else:
         return {"estado" : "DEBUG" , mensaje : "no definido"}
     
+@app.get("/clima/{grados}")
+def cantidad_de_Calor(grados : int):
+    if grados >30:
+        return {"estado": "Calor extremo", "recomendacion": "Tomar agua"}
+    elif 15 >= grados >=30:
+        return {"estado": "Temperatura agradable", "recomendacion": "Disfrutar"}
+    else:
+        return {"estado": "Hace frío", "recomendacion": "Abrigarse"}
+
+@app.post("/registrar/{nombre}/{edad}")
+def usuario_datos_ejemplo(nombre : str, edad : int):
+    if edad  >= 18:
+        return {"mensaje": f"usuario {nombre} registrado","estado" : "mayor de edad"}
+    else:
+        return {"mensaje": f"Usuario {nombre} registrado", "estado": "menor de edad"}
     
-
-
