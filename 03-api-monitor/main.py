@@ -1,5 +1,8 @@
 from fastapi import FastAPI # abrir la caja de herramientas y de ello tarer al APIs
 import psutil
+import sqlite3
+import datetime
+
 
 # Creamos la aplicación (el mesero)
 app = FastAPI()
@@ -64,4 +67,65 @@ def usuario_datos_ejemplo(nombre : str, edad : int):
         return {"mensaje": f"usuario {nombre} registrado","estado" : "mayor de edad"}
     else:
         return {"mensaje": f"Usuario {nombre} registrado", "estado": "menor de edad"}
+
+
     
+@app.get("/guardar_estado")
+def guardar_estado():
+    uso_cpu = psutil.cpu_percent(interval= 1)
+    fecha_actual = str(datetime.datetime.now())
+
+#ahoraq conectare con los datos que hice
+
+"""conexion = sqlite3.connect("historial.db")
+cursor = conexion.cursor()
+
+cursor.execute("INSERT INTO registros (fecha, cpu) VALUES (?, ?) ", (fecha_actual, uso_cpu))
+
+conexion.commit()
+conexion.close()
+
+return {"mensaje" : "Estado guardado exitosamente en la base de datos"}"""
+
+@app.get("/evaluar_servidor/{nombre}/{cpu}/{ram}")
+def evaluar_servidor(nombre : str, cpu : int , ram : int):
+    if cpu >80 and ram > 80:
+        return {"servidor": nombre, "estado": "CRITICAL"}
+    elif cpu > 80 or ram > 80:
+        return {"servidor": nombre, "estado": "WARNING"}
+    else:
+        return {"servidor": nombre, "estado": "OK"}
+    
+
+
+@app.get("/guardar_datos")
+def guardar_datos():
+
+
+    uso_cpu = psutil.cpu_percent(interval= 1)
+    fecha_actual = str(datetime.datetime.now())
+
+
+    conexion = sqlite3.connect("historial.db")
+    cursor = conexion.cursor()
+
+    cursor.execute("INSERT INTO registros (fecha, cpu) VALUES (?, ?)", (fecha_actual, uso_cpu))
+
+    conexion.commit()
+    conexion.close()
+
+
+    return {"mensaje": "¡Estado guardado exitosamente en la base de datos!"}
+
+@app.get("/historial")
+def ver_historial():
+    conexion = sqlite3.connect("historial.db")
+    cursor = conexion.cursor()
+
+    cursor.execute("SELECT * FROM  registros")
+    datos = cursor.fetchall()
+
+    conexion.close()
+
+    return {"Historial" : datos}
+
